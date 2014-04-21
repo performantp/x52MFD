@@ -18,7 +18,7 @@ Installation
 - compile the code using the supplied makefile
 - place the x52.xml (which is the flghtgear protocol definition) in $FG_HOME/Protocol/
 - run flightgear via the supplied shell script
-
+- run the executable x52MFD (this requires access to the joystick, so elevated privileges may be required)
 
 
 License
