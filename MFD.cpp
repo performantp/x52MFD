@@ -17,7 +17,7 @@ MFD::setLine1 ( std::string line )
 {
 	std::cout<<"setting line 1 to: "<<line<<std::endl;
 	char * constLine = const_cast<char*>(line.c_str());
-	x52_settext(hdl, 0,constLine, 16);
+	x52_settext(hdl, 0,constLine, strlen(constLine));
 }
 
 	void
@@ -25,7 +25,7 @@ MFD::setLine2 ( std::string line )
 {	
 	std::cout<<"setting line 2 to: "<<line<<std::endl;
 	char * constLine = const_cast<char*>(line.c_str());
-	x52_settext(hdl, 1,constLine, 16);
+	x52_settext(hdl, 1,constLine, strlen(constLine));
 }
 
 	void
@@ -33,7 +33,7 @@ MFD::setLine3 ( std::string line )
 {
 	std::cout<<"setting line 3 to: "<<line<<std::endl;
 	char * constLine = const_cast<char*>(line.c_str());
-	x52_settext(hdl, 2,constLine, 16);
+	x52_settext(hdl, 2,constLine, strlen(constLine));
 }
 
 
