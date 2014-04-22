@@ -80,6 +80,12 @@
 				<format>%03.2f</format>
 			</chunk>
 
+			<chunk>
+				<name>dme_sel</name>
+				<node>/instrumentation/dme/frequencies/selected-mhz</node>
+				<type>float</type>
+				<format>\ndme\t%03.2f</format>
+			</chunk>
 		</output>
 		<input>
 			<line_separator>newline</line_separator>
