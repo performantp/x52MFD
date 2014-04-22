@@ -67,7 +67,7 @@ class MfdPage
 		/* ====================  METHODS       ======================================= */
 
 		/* ====================  DATA MEMBERS  ======================================= */
-		Msg message;	
+		Msg message;
 }; /* -----  end of class MfdPage  ----- */
 
 
@@ -98,9 +98,10 @@ class MFD
 
 	private:
 		/* ====================  METHODS       ======================================= */
-		void setLine1(std::string line1);
-		void setLine2(std::string line2);
-		void setLine3(std::string line3);
+		void setLine1(std::string line1, bool center);
+		void setLine2(std::string line2, bool center);
+		void setLine3(std::string line3, bool center);
+        void setLine(int line_id, std::string line, bool center);
 
 		/* ====================  DATA MEMBERS  ======================================= */
 		std::string line1;
