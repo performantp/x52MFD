@@ -13,29 +13,39 @@ MFD::~MFD ()
 
 
 	void
-MFD::setLine1 ( std::string line )
+MFD::setLine1 ( std::string line, bool center )
 {
-	std::cout<<"setting line 1 to: "<<line<<std::endl;
-	char * constLine = const_cast<char*>(line.c_str());
-	x52_settext(hdl, 0,constLine, strlen(constLine));
+    setLine(0,line,center);
 }
 
 	void
-MFD::setLine2 ( std::string line )
-{	
-	std::cout<<"setting line 2 to: "<<line<<std::endl;
-	char * constLine = const_cast<char*>(line.c_str());
-	x52_settext(hdl, 1,constLine, strlen(constLine));
+MFD::setLine2 ( std::string line, bool center )
+{
+    setLine(1,line,center);
 }
 
 	void
-MFD::setLine3 ( std::string line )
+MFD::setLine3 ( std::string line, bool center)
 {
-	std::cout<<"setting line 3 to: "<<line<<std::endl;
-	char * constLine = const_cast<char*>(line.c_str());
-	x52_settext(hdl, 2,constLine, strlen(constLine));
+    setLine(2,line,center);
 }
 
+    void
+MFD::setLine(int line_id, std::string line, bool center)
+{
+    // pad with spaces to center text
+    if (center) {
+        int spaceCount = (16-line.length())/2;
+
+        for (int i=0; i<spaceCount; i++) {
+            line = " "+line;
+        };
+    }
+
+    std::cout<<"setting line 1 to: "<<line<<std::endl;
+    char * constLine = const_cast<char*>(line.c_str());
+    x52_settext(hdl,line_id,constLine, strlen(constLine));
+}
 
 	void
 MFD::setPage ( MfdPage page )
@@ -43,9 +53,9 @@ MFD::setPage ( MfdPage page )
 	std::string line1(page.getLine1());
 	std::string line2(page.getLine2());
 	std::string line3(page.getLine3());
-	MFD::setLine1(line1);
-	MFD::setLine2(line2);
-	MFD::setLine3(line3);
+	MFD::setLine1(line1, true);
+	MFD::setLine2(line2, true);
+	MFD::setLine3(line3, true);
 }
 
 
@@ -58,7 +68,7 @@ MfdPage::MfdPage (Msg msg)
 	std::string
 MfdPage::getLine1 (  )
 {
-	return message.title+"          ";
+	return message.title;
 }	
 
 	std::string
@@ -70,6 +80,6 @@ MfdPage::getLine2 (  )
 	std::string
 MfdPage::getLine3 (  )
 {
-	return message.actFreq1+"  "+message.stbyFreq1;
+	return message.actFreq1+"<>"+message.stbyFreq1;
 }
 
