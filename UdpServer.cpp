@@ -23,10 +23,7 @@ std::string UdpServer::fetch(){
 
 	int received = socket->receive_from(boost::asio::buffer(buf), remote_endpoint, 0, error);
 
-    std::cout<<received<<std::endl;
-
 	std::string message(buf.begin(), buf.end()-(BUFFER_SIZE-received));
-
 
 	return message;
 }
