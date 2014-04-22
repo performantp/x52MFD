@@ -16,16 +16,17 @@ UdpServer::~UdpServer ()
 std::string UdpServer::fetch(){
 	using boost::asio::ip::udp;
 
-	boost::array<char, 98> buf;
+    boost::array<char, BUFFER_SIZE> buf;
 	
 	udp::endpoint remote_endpoint;
 	boost::system::error_code error;
 
-	socket->receive_from(boost::asio::buffer(buf), remote_endpoint, 0, error);
+	int received = socket->receive_from(boost::asio::buffer(buf), remote_endpoint, 0, error);
 
-	std::string message(buf.begin(), buf.end());
+    std::cout<<received<<std::endl;
 
-	std::cout<<message<<std::endl;
+	std::string message(buf.begin(), buf.end()-(BUFFER_SIZE-received));
+
 
 	return message;
 }
