@@ -10,7 +10,8 @@ At this moment it is basically not much more than a proof of concept.
 Features
 ========
 
-- Display Radio Frequencies on the X52Pro's MFD (currently Comm only, Nav and ADR are already prepared for in the protocol file)
+- Display COM,NAV,ADR and DME frequencies on the X52Pro's MFD
+- Switch between frequencies by push-scrolling the right MFD roller
 
 Installation
 ===========
