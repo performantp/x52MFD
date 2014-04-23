@@ -16,7 +16,7 @@ main ( int argc, char *argv[] )
 {
 	MsgParser parser;
 	Msg mymsg;
-	UdpServer server;
+	UdpServer server(1234);
 	MfdPage page(mymsg);
 	MFD mfd;
     Mode mode = COM;

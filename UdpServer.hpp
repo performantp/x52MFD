@@ -48,7 +48,7 @@ class UdpServer
 {
 	public:
 		/* ====================  LIFECYCLE     ======================================= */
-		UdpServer();                             /* constructor */
+		UdpServer(int portno);                             /* constructor */
 		~UdpServer();                             /* destructor */
 
 		/* ====================  ACCESSORS     ======================================= */
@@ -69,5 +69,6 @@ class UdpServer
 		/* ====================  DATA MEMBERS  ======================================= */
 		boost::asio::io_service io_service;
 		boost::asio::ip::udp::socket *socket;
+		int port;
 }; /* -----  end of class UdpServer  ----- */
 #endif   /* ----- #ifndef UdpServer_INC  ----- */
