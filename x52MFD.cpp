@@ -2,10 +2,13 @@
 #include "MsgParser.hpp"
 #include "MFD.hpp"
 #include "UdpServer.hpp"
+#include "Joystick.hpp"
+#include <math.h>
 #include <iostream>
 #include <string>
 
 enum Mode {COM,NAV,ADF,DME};
+#define NUMBER_OF_MODES 4
 
 using namespace std;
 	int
@@ -17,8 +20,20 @@ main ( int argc, char *argv[] )
 	MfdPage page(mymsg);
 	MFD mfd;
     Mode mode = COM;
+    Joystick *js = new Joystick();
 
 	for(;;){ //continuously update the mfd with data from flightgear
+
+        // handle mode switching
+        int mode_tmp = js->roller_1_held;
+        if (mode_tmp < 0) {
+            mode_tmp += (4*(mode_tmp/-4))+4;
+        }
+        mode_tmp -= 4*(mode_tmp/4);
+
+        mode = static_cast<Mode>(mode_tmp);
+
+        // update page with correct mode
 		std::vector<Msg> vec = parser.parse(server.fetch());
 
 		Msg mymsg2;

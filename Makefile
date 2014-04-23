@@ -6,7 +6,7 @@ program_INCLUDE_DIRS :=
 program_LIBRARY_DIRS :=
 program_LIBRARIES := boost_system x52pro
 
-CPPFLAGS += $(foreach includedir,$(program_INCLUDE_DIRS),-I$(includedir))
+CPPFLAGS += $(foreach includedir,$(program_INCLUDE_DIRS),-I$(includedir)) -std=c++0x -pthread
 LDFLAGS += $(foreach librarydir,$(program_LIBRARY_DIRS),-L$(librarydir))
 LDFLAGS2 = $(foreach library,$(program_LIBRARIES),-l$(library))
 
