@@ -55,6 +55,7 @@ class UdpServer
 
 		/* ====================  MUTATORS      ======================================= */
 		std::string fetch();
+		void send(std::string message);
 
 		/* ====================  OPERATORS     ======================================= */
 
@@ -69,6 +70,46 @@ class UdpServer
 		/* ====================  DATA MEMBERS  ======================================= */
 		boost::asio::io_service io_service;
 		boost::asio::ip::udp::socket *socket;
+		boost::asio::ip::udp::endpoint remote_endpoint;
+		boost::system::error_code error;
 		int port;
 }; /* -----  end of class UdpServer  ----- */
+
+/*
+ * =====================================================================================
+ *        Class:  UdpClient
+ *  Description:  
+ * =====================================================================================
+ */
+class UdpClient
+{
+	public:
+		/* ====================  LIFECYCLE     ======================================= */
+		UdpClient (int portno);                             /* constructor */
+		~UdpClient ();                             					/* destructor */
+
+		/* ====================  ACCESSORS     ======================================= */
+
+		/* ====================  MUTATORS      ======================================= */
+		void send(std::string message);
+
+		/* ====================  OPERATORS     ======================================= */
+
+	protected:
+		/* ====================  METHODS       ======================================= */
+
+		/* ====================  DATA MEMBERS  ======================================= */
+
+	private:
+		/* ====================  METHODS       ======================================= */
+
+		/* ====================  DATA MEMBERS  ======================================= */
+		boost::asio::io_service io_service;
+		boost::asio::ip::udp::socket *socket;
+		boost::asio::ip::udp::endpoint remote_endpoint;
+		boost::system::error_code error;
+		int port;
+
+}; /* -----  end of class UdpClient  ----- */
+
 #endif   /* ----- #ifndef UdpServer_INC  ----- */

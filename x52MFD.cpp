@@ -16,7 +16,8 @@ main ( int argc, char *argv[] )
 {
 	MsgParser parser;
 	Msg mymsg;
-	UdpServer server(1234);
+	UdpServer inbound(1234);
+	UdpClient outbound(1235);
 	MfdPage page(mymsg);
 	MFD mfd;
     Mode mode = COM;
@@ -34,7 +35,10 @@ main ( int argc, char *argv[] )
         mode = static_cast<Mode>(mode_tmp);
 
         // update page with correct mode
-		std::vector<Msg> vec = parser.parse(server.fetch());
+		std::vector<Msg> vec = parser.parse(inbound.fetch());
+
+		//writing com data back to fg for testing purposes
+		//outbound.send("123.34\t123.34\t123.45\t123.45\n");
 
 		Msg mymsg2;
        
