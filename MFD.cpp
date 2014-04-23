@@ -42,7 +42,7 @@ MFD::setLine(int line_id, std::string line, bool center)
         };
     }
 
-    std::cout<<"setting line 1 to: "<<line<<std::endl;
+    std::cout<<"setting line "<<line_id<<" to: "<<line<<std::endl;
     char * constLine = const_cast<char*>(line.c_str());
     x52_settext(hdl,line_id,constLine, strlen(constLine));
 }
