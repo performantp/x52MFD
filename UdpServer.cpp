@@ -50,7 +50,7 @@ UdpClient::~UdpClient(){
 }
 
 void UdpClient::send(std::string message){
-	boost::array<char, BUFFER_SIZE > sendbuf;
+	boost::array<char, 90 > sendbuf;
 	std::copy(message.begin(), message.begin()+message.size(), sendbuf.begin());
 
  socket->send_to(boost::asio::buffer(sendbuf), remote_endpoint);

@@ -10,7 +10,7 @@ At this moment it is basically not much more than a proof of concept.
 Features
 ========
 
-- Display COM,NAV,ADR and DME frequencies on the X52Pro's MFD
+- Display COM,NAV,ADF and DME frequencies on the X52Pro's MFD
 - Switch between frequencies by push-scrolling the right MFD roller
 
 Installation

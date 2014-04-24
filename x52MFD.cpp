@@ -38,7 +38,7 @@ main ( int argc, char *argv[] )
 		std::vector<Msg> vec = parser.parse(inbound.fetch());
 
 		//writing com data back to fg for testing purposes
-		//outbound.send("123.34\t123.34\t123.45\t123.45\n");
+		outbound.send("123.34\t123.34\t123.45\t123.45\n123.34\t123.34\t123.45\t123.45\n123.34\t123.34\t123.45\t123.45\n999.99\n");
 
 		Msg mymsg2;
        

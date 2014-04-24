@@ -87,10 +87,10 @@
 				<format>\ndme\t%03.2f</format>
 			</chunk>
 		</output>
+
 		<input>
 			<line_separator>newline</line_separator>
 			<var_separator>tab</var_separator>
-
 			<chunk>
 				<name>comm1_sel</name>
 				<node>/instrumentation/comm/frequencies/selected-mhz</node>
@@ -111,6 +111,55 @@
 				<node>/instrumentation/comm[1]/frequencies/standby-mhz</node>
 				<type>float</type>
 			</chunk>
+
+			<chunk>
+				<name>adf1_sel</name>
+				<node>/instrumentation/adf/frequencies/selected-khz</node>
+				<type>float</type>
+			</chunk>
+			<chunk>
+				<name>adf1_stby</name>
+				<node>/instrumentation/adf/frequencies/standby-khz</node>
+				<type>float</type>
+			</chunk>
+			<chunk>
+				<name>adf2_sel</name>
+				<node>/instrumentation/adf[1]/frequencies/selected-khz</node>
+				<type>float</type>
+			</chunk>
+			<chunk>
+				<name>adf2_stby</name>
+				<node>/instrumentation/adf[1]/frequencies/standby-khz</node>
+				<type>float</type>
+			</chunk>
+
+			<chunk>
+				<name>nav1_sel</name>
+				<node>/instrumentation/nav/frequencies/selected-mhz</node>
+				<type>float</type>
+			</chunk>
+			<chunk>
+				<name>nav1_stby</name>
+				<node>/instrumentation/nav/frequencies/standby-mhz</node>
+				<type>float</type>
+			</chunk>
+			<chunk>
+				<name>nav2_sel</name>
+				<node>/instrumentation/nav[1]/frequencies/selected-mhz</node>
+				<type>float</type>
+			</chunk>
+			<chunk>
+				<name>nav2_stby</name>
+				<node>/instrumentation/nav[1]/frequencies/standby-mhz</node>
+				<type>float</type>
+			</chunk>
+
+			<chunk>
+				<name>dme_sel</name>
+				<node>/instrumentation/dme/frequencies/selected-mhz</node>
+				<type>float</type>
+			</chunk>
+
 		</input>
 
 	</generic>
