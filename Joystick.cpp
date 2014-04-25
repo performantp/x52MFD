@@ -68,7 +68,7 @@ void Joystick::handleEvents() {
 
 void Joystick::handleButtonEvent() {
     button[event.number] = event.value;
-
+		//roller left of the mfd
     if (event.number == 34 && event.value == 1) {
         roller_0 += 1;
     }
@@ -77,6 +77,7 @@ void Joystick::handleButtonEvent() {
         roller_0 -= 1;
     }
 
+		//roller right of the mfd
     if (event.number == 36 && event.value == 1) {
         if (button[38] == 1) {
             roller_1_held += 1;
@@ -91,5 +92,21 @@ void Joystick::handleButtonEvent() {
         } else {
             roller_1 -= 1;
         }
+    }
+		//grey top button in the middle	(labeled START/STOP)
+    if (event.number == 32 && event.value == 1) {
+
+    }
+		//grey lower button in the middle	(labeled RESET)
+    if (event.number == 33 && event.value == 1) {
+
+    }
+		//index finger scroll-wheel up
+    if (event.number == 17 && event.value == 1) {
+
+    }
+		//index finger scroll-wheel down
+    if (event.number == 16 && event.value == 1) {
+
     }
 }
