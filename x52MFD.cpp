@@ -10,6 +10,9 @@
 enum Mode {COM,NAV,ADF,DME};
 #define NUMBER_OF_MODES 4
 
+void callback(){
+	std::cout<<"callback called"<<std::endl;
+}
 using namespace std;
 	int
 main ( int argc, char *argv[] )
@@ -23,6 +26,8 @@ main ( int argc, char *argv[] )
     Mode mode = COM;
     Joystick *js = new Joystick();
 
+		//registering a callback handler for testing purposes
+		//js->addCallback(&callback,Joystick::BUTTON_TOP);
 	for(;;){ //continuously update the mfd with data from flightgear
 
         // handle mode switching
@@ -38,7 +43,7 @@ main ( int argc, char *argv[] )
 		std::vector<Msg> vec = parser.parse(inbound.fetch());
 
 		//writing com data back to fg for testing purposes
-		outbound.send("123.34\t123.34\t123.45\t123.45\n123.34\t123.34\t123.45\t123.45\n123.34\t123.34\t123.45\t123.45\n999.99\n");
+		//outbound.send("111.11\t111.11\t111.11\t111.11\t222.22\t222.22\t222.22\t222.22\t333.33\t333.33\t333.33\t333.33\t444.44"); 
 
 		Msg mymsg2;
        

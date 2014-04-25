@@ -50,7 +50,22 @@ Joystick::~Joystick() {
     free(button);
 }
 
-
+void Joystick::addCallback(std::function<void()> func,Event event){
+	std::vector<std::function<void()>> handler;
+	if(handlers.count(event)){
+		handler = handlers[event];
+	}else{
+		handler.push_back(func);
+		handlers[event]=handler;
+	}
+}
+void Joystick::callHandlers(Event event){
+	 for (std::vector<std::function<void()>>::iterator it = handlers[event].begin() ; it!=handlers[event].end(); ++it){
+			std::function<void()>	callback = *it;
+			callback();
+	 }
+	
+}
 void Joystick::handleEvents() {
     while(1) {
         read(joy_fd, &event, sizeof(struct js_event));
@@ -65,22 +80,24 @@ void Joystick::handleEvents() {
         }
     }
 }
-
 void Joystick::handleButtonEvent() {
     button[event.number] = event.value;
 		//roller left of the mfd
     if (event.number == 34 && event.value == 1) {
         roller_0 += 1;
-    }
+				callHandlers(ROLLER0_UP);
+	 	}
 
     if (event.number == 35 && event.value == 1) {
         roller_0 -= 1;
+				callHandlers(ROLLER0_DOWN);
     }
 
 		//roller right of the mfd
     if (event.number == 36 && event.value == 1) {
         if (button[38] == 1) {
             roller_1_held += 1;
+						callHandlers(ROLLER1_PRESSUP);
         } else {
             roller_1 += 1;
         }
@@ -89,21 +106,22 @@ void Joystick::handleButtonEvent() {
     if (event.number == 37 && event.value == 1) {
         if (button[38] == 1) {
             roller_1_held -= 1;
+						callHandlers(ROLLER1_PRESSDOWN);
         } else {
             roller_1 -= 1;
         }
     }
 		//grey top button in the middle	(labeled START/STOP)
     if (event.number == 32 && event.value == 1) {
-
+				callHandlers(BUTTON_TOP);
     }
 		//grey lower button in the middle	(labeled RESET)
     if (event.number == 33 && event.value == 1) {
-
+				callHandlers(BUTTON_BOTTOM);
     }
 		//index finger scroll-wheel up
     if (event.number == 17 && event.value == 1) {
-
+				callHandlers(SCROLLWHEEL_UP);
     }
 		//index finger scroll-wheel down
     if (event.number == 16 && event.value == 1) {
