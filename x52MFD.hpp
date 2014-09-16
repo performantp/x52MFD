@@ -12,72 +12,75 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * 
+ *
  * =====================================================================================
  *
- *       Filename:  MsgParser.hpp
+ *       Filename:  x52MFD.hpp
  *
- *    Description:  Code for parsing the strings coming from the generic flightgear protocol
+ *    Description:  This is the main module for the x52MFD project
  *
- *        Created:  01/05/2013 07:14:00 PM
+ *        Created:  26.04.2014 10:01:58
  *       Revision:  none
- *       Compiler:  gcc
+ *       Compiler:	gcc
  *
  *         Author:  Michael Sacher (ms), michael.sacher@performant.ch
  *
  * =====================================================================================
  */
+#ifndef  x52MFD_INC
+#define  x52MFD_INC
 
-#ifndef  MsgParser_INC
-#define  MsgParser_INC
-
+#include	<stdlib.h>
+#include "MsgParser.hpp"
+#include "MFD.hpp"
+#include "UdpServer.hpp"
+class x52MFD;
+#include "Joystick.hpp"
+#include <math.h>
 #include <iostream>
-#include <stdlib.h>
 #include <string>
-#include <boost/algorithm/string.hpp>
-#include <vector>
 
-using namespace std;
 
-typedef struct Msg {
-	string title;
-	string actFreq0,stbyFreq0;
-	string actFreq1,stbyFreq1;
-    string toString(){
-     return "test";
-    };
-} Msg; 
 
-/*
+
+/* =====================================================================================
+ *        Class:  X52MFD
+ *  Description:  
  * =====================================================================================
- *        Class:  MsgParser
- *  Description:  MessageParser to parse the Strings coming from the generic flightgear protocol
- * =====================================================================================
- */
-class MsgParser
+*/
+enum Mode {COM,NAV,ADF,DME};
+class X52MFD
 {
 	public:
-			
-		vector<Msg> parse(std::string msgString );
-
 		/* ====================  LIFECYCLE     ======================================= */
-		MsgParser ();                             /* constructor      */
-		MsgParser ( const MsgParser &other );   /* copy constructor */
-		~MsgParser ();                            /* destructor       */
+		X52MFD ();                             /* constructor */
+		~X52MFD ();														 /* destructor */
 
 		/* ====================  ACCESSORS     ======================================= */
-
+		void main();
 		/* ====================  MUTATORS      ======================================= */
-
+		void prevMode();
+		void nextMode();
+		void switchLine(int linenr, Mode mode);
 		/* ====================  OPERATORS     ======================================= */
 
-		const MsgParser& operator = ( const MsgParser &other ); /* assignment operator */
+	protected:
+		/* ====================  METHODS       ======================================= */
 
 		/* ====================  DATA MEMBERS  ======================================= */
-	protected:
 
 	private:
+		/* ====================  METHODS       ======================================= */
 
-}; /* -----  end of class MsgParser  ----- */
+		/* ====================  DATA MEMBERS  ======================================= */
+		MsgParser parser;
+		Msg mymsg;
+		UdpServer inbound;
+		UdpClient outbound;
+		MfdPage page;
+		MFD mfd;
+		Mode mode = COM;
+		Joystick *js;
+}; /* -----  end of class X52MFD  ----- */
 
-#endif   /* ----- #ifndef MsgParser_INC  ----- */
+#endif   /* ----- #ifndef x52MFD_INC  ----- */

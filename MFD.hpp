@@ -55,7 +55,6 @@ class MfdPage
 		std::string getLine2();
 		std::string getLine3();
 		/* ====================  MUTATORS      ======================================= */
-
 		/* ====================  OPERATORS     ======================================= */
 
 	protected:
@@ -88,7 +87,8 @@ class MFD
 
 		/* ====================  MUTATORS      ======================================= */
 		void setPage(MfdPage page);
-
+		void enableUpdate();
+		void disableUpdate();
 		/* ====================  OPERATORS     ======================================= */
 
 	protected:
@@ -108,6 +108,7 @@ class MFD
 		std::string line2;
 		std::string line3;
 		struct x52 *hdl;
+		bool isUpdateEnabled = true;
 }; /* -----  end of class MFD  ----- */
 
 #endif   /* ----- #ifndef MFD_INC  ----- */
